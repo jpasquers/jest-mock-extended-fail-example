@@ -1,4 +1,4 @@
-import { mockDeep } from "jest-mock-extended";
+import { mockDeep, mock } from "jest-mock-extended";
 
 
 interface X {
@@ -12,10 +12,16 @@ interface X {
 
 
 describe('nested mock', () => {
-    it('should be empty inner object', () => {
-        let mock = mockDeep<X>({y: {}});
+    it('mockDeep should be empty inner object', () => {
+        let deepMock = mockDeep<X>({y: {}});
         //This fails -> Received: [Function mockConstructor]
-        expect(mock.y["something"]).toBeUndefined();
+        expect(deepMock.y["something"]).toBeUndefined();
+    })
+
+    it('mock should be empty inner object', () => {
+        let shallowMock = mock<X>({y: {}});
+        //This fails -> Received: [Function mockConstructor]
+        expect(shallowMock.y["something"]).toBeUndefined();
     })
 })
 
