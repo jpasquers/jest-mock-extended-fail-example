@@ -14,7 +14,7 @@ interface X {
 describe('nested mock', () => {
     it('should be empty inner object', () => {
         let mock = mockDeep<X>({y: {}});
-
+        //This fails -> Received: [Function mockConstructor]
         expect(mock.y["something"]).toBeUndefined();
     })
 })
